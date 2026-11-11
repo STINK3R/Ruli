@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#1834D6" />
+    <title>Рули — нет сети</title>
+    <style>
+      html, body { margin: 0; height: 100%; }
+      body {
+        display: grid; place-items: center; padding: 24px; box-sizing: border-box;
+        background: radial-gradient(circle at 30% 20%, #2a4bff 0, #1834d6 45%, #0c1c8c 100%);
+        color: #fff; font: 16px/1.5 system-ui, -apple-system, 'Segoe UI', sans-serif; text-align: center;
+      }
+      h1 { margin: 0 0 8px; font-size: 44px; line-height: 1; color: #ffe814; letter-spacing: .02em;
+           text-shadow: 4px 4px 0 #ff4fb0; text-transform: uppercase; font-weight: 900; }
+      p { margin: 0 auto 22px; max-width: 320px; opacity: .85; }
+      img { width: 96px; height: 96px; border-radius: 24px; margin-bottom: 22px; box-shadow: 6px 6px 0 #0d0e12; }
+      button { border: 0; border-radius: 999px; padding: 14px 26px; font: 800 15px system-ui, sans-serif;
+               background: #ffe814; color: #0d0e12; box-shadow: 4px 4px 0 #0d0e12; cursor: pointer; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <img src="/icons/icon-192.png" alt="" />
+      <h1>Нет сети</h1>
+      <p>Рули ждёт интернет. Бронь и поездки работают только онлайн — как только связь появится, всё обновится само.</p>
+      <button onclick="location.reload()">Попробовать снова</button>
+    </main>
+  </body>
+</html>

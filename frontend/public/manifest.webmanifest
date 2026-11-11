@@ -1,0 +1,43 @@
+{
+  "id": "/",
+  "name": "Рули — каршеринг в Минске",
+  "short_name": "Рули",
+  "description": "Поминутная аренда машин в Минске: честная бронь по маршруту, паспорт кузова и проверка водителя «Рули ID».",
+  "lang": "ru",
+  "dir": "ltr",
+  "start_url": "/?source=pwa",
+  "scope": "/",
+  "display": "standalone",
+  "display_override": ["standalone", "minimal-ui"],
+  "orientation": "portrait",
+  "background_color": "#1834D6",
+  "theme_color": "#1834D6",
+  "categories": ["travel", "navigation", "lifestyle"],
+  "icons": [
+    { "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/icons/icon-maskable-192.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable" },
+    { "src": "/icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    {
+      "name": "Куда едем?",
+      "short_name": "Куда едем",
+      "description": "Выгодная машина до нужного адреса",
+      "url": "/?plan=1&source=shortcut",
+      "icons": [{ "src": "/icons/icon-96.png", "sizes": "96x96", "type": "image/png" }]
+    },
+    {
+      "name": "Мои поездки",
+      "url": "/profile?source=shortcut",
+      "icons": [{ "src": "/icons/icon-96.png", "sizes": "96x96", "type": "image/png" }]
+    },
+    {
+      "name": "Рули ID",
+      "url": "/verification?source=shortcut",
+      "icons": [{ "src": "/icons/icon-96.png", "sizes": "96x96", "type": "image/png" }]
+    }
+  ],
+  "related_applications": [{ "platform": "webapp", "url": "/manifest.webmanifest" }],
+  "prefer_related_applications": false
+}

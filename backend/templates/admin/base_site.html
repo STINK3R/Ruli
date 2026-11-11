@@ -1,0 +1,103 @@
+{% extends "admin/base.html" %}
+{% load i18n %}
+
+{% block title %}{% if subtitle %}{{ subtitle }} | {% endif %}{{ title }} | {{ site_title|default:_('Django site admin') }}{% endblock %}
+
+{# Тёмная тема Django отключена: панель модератора в фирменной палитре «Рули Signature». #}
+{% block dark-mode-vars %}{% endblock %}
+
+{% block extrastyle %}{{ block.super }}
+<style>
+  :root,
+  html[data-theme='light'],
+  html[data-theme='dark'] {
+    color-scheme: light;
+    --primary: #c9ac74;
+    --secondary: #16171a;
+    --accent: #c9ac74;
+    --primary-fg: #fcfaf6;
+    --body-fg: #16171a;
+    --body-bg: #fcfaf6;
+    --body-quiet-color: #777166;
+    --body-medium-color: #4a463f;
+    --body-loud-color: #16171a;
+    --header-color: #e8d7b0;
+    --header-branding-color: #e8d7b0;
+    --header-bg: #16171a;
+    --header-link-color: #e8d7b0;
+    --breadcrumbs-fg: #c9bfa8;
+    --breadcrumbs-link-fg: #e8d7b0;
+    --breadcrumbs-bg: #2a2b30;
+    --link-fg: #8a6a38;
+    --link-hover-color: #5e4521;
+    --link-selected-fg: #16171a;
+    --hairline-color: #ece6da;
+    --border-color: #d9d0bf;
+    --error-fg: #a63d32;
+    --message-success-bg: #f3ead6;
+    --message-warning-bg: #f6ecd2;
+    --message-error-bg: #f6e3df;
+    --darkened-bg: #f4f1ea;
+    --selected-bg: #ece4d3;
+    --selected-row: #f6efdf;
+    --button-fg: #fcfaf6;
+    --button-bg: #16171a;
+    --button-hover-bg: #2e2f35;
+    --default-button-bg: #a8844e;
+    --default-button-hover-bg: #8a6a38;
+    --close-button-bg: #777166;
+    --close-button-hover-bg: #4a463f;
+    --delete-button-bg: #a63d32;
+    --delete-button-hover-bg: #85302a;
+    --object-tools-bg: #2e2f35;
+    --object-tools-hover-bg: #16171a;
+  }
+
+  #site-name a {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 22px;
+    letter-spacing: 0.01em;
+  }
+
+  .ruli-mark {
+    display: inline-grid;
+    place-items: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 9px;
+    background: #222327;
+    color: #c9ac74;
+    font-size: 20px;
+    font-weight: 700;
+    box-shadow: inset 0 0 0 1px rgba(201, 172, 116, 0.45);
+  }
+
+  .theme-toggle {
+    display: none !important;
+  }
+
+  /* Стандартные зелёные галочки и значок успеха — в шампань и графит. */
+  ul.messagelist li.success {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='11' fill='%23a8844e'/%3E%3Cpath d='m7 12.5 3.2 3.2L17 9' fill='none' stroke='%23fcfaf6' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  }
+
+  img[src$='icon-yes.svg'] {
+    filter: grayscale(1) sepia(1) saturate(2.2) hue-rotate(-12deg) brightness(0.85);
+  }
+
+  #changelist-filter li.selected a,
+  #changelist-filter a:focus,
+  #changelist-filter a:hover {
+    color: #8a6a38;
+  }
+</style>
+{% endblock %}
+
+{% block branding %}
+<div id="site-name"><a href="{% url 'admin:index' %}"><span class="ruli-mark">Р</span>{{ site_header|default:_('Django administration') }}</a></div>
+{% endblock %}
+
+{% block nav-global %}{% endblock %}

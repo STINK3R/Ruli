@@ -1,0 +1,134 @@
+/* «Рули Street» — граффити-стиль.
+   Кобальтовая стена, кислотно-жёлтая краска из баллончика с потёками, розовый второй слой,
+   асфальт для карточек. Две темы: «Ночь» (кобальт и асфальт) и «День» (бетон).
+   Rubik Wet Paint — надписи с потёками, Unbounded — заголовки и цифры, Onest — текст. */
+
+:root {
+  --cobalt: #1834d6;
+  --cobalt-2: #2a4bff;
+  --cobalt-deep: #0c1c8c;
+  --acid: #ffe814;
+  --acid-2: #fff27a;
+  --acid-deep: #d9c200;
+  --pink: #ff4fb0;
+  --pink-deep: #d92c8c;
+  --ink: #0d0e12;
+  --asphalt: #121318;
+  --asphalt-2: #1b1d24;
+  --asphalt-3: #262934;
+  --concrete: #e7e4dc;
+  --chalk: #f8f7f3;
+  --danger: #ff4a3d;
+  --warn: #ff9f1c;
+
+  --font-tag: 'Rubik Wet Paint', 'Unbounded Variable', Impact, sans-serif;
+  --font-spray: 'Rubik Spray Paint', 'Unbounded Variable', Impact, sans-serif;
+  --font-head: 'Unbounded Variable', 'Unbounded', 'Arial Black', system-ui, sans-serif;
+  --font-body: 'Onest Variable', 'Onest', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  /* Старые имена — чтобы разметка компонентов не менялась. */
+  --serif: var(--font-head);
+  --sans: var(--font-body);
+
+  --r-xl: 30px;
+  --r-lg: 22px;
+  --r-md: 16px;
+  --r-sm: 11px;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --nav-h: 66px;
+  --tab-h: 70px;
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+
+  --drips: url('./drips.svg');
+  /* Шум баллончика: накладывается поверх стен и карточек. */
+  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ---------- Ночь: кобальтовая стена, асфальтовые карточки ---------- */
+:root,
+[data-theme='night'] {
+  color-scheme: dark;
+  --wall: var(--cobalt);
+  --wall-2: var(--cobalt-deep);
+  --wall-text: #ffffff;
+  --wall-muted: rgba(255, 255, 255, 0.72);
+
+  --paper: #0f1016;
+  --surface: #14151b;
+  --surface-2: #1c1e26;
+  --surface-3: #282b37;
+  --glass: rgba(18, 19, 25, 0.78);
+  --glass-strong: rgba(14, 15, 20, 0.92);
+  --line: rgba(255, 255, 255, 0.1);
+  --line-strong: rgba(255, 255, 255, 0.2);
+  --text: #f7f7f2;
+  --muted: rgba(247, 247, 242, 0.62);
+  --muted-light: rgba(247, 247, 242, 0.62);
+
+  --accent: var(--acid);
+  --accent-text: var(--acid);
+  --on-accent: var(--ink);
+  --accent-soft: rgba(255, 232, 20, 0.14);
+  --accent-line: rgba(255, 232, 20, 0.45);
+  --second: var(--pink);
+  --second-soft: rgba(255, 79, 176, 0.16);
+  --hard-shadow: var(--ink);
+
+  --gold: var(--acid);
+  --gold-2: var(--acid);
+  --gold-3: var(--acid-2);
+  --gold-soft: var(--accent-soft);
+  --gold-line: var(--accent-line);
+  --bronze: var(--acid);
+  --danger-soft: rgba(255, 74, 61, 0.16);
+  --warn-soft: rgba(255, 159, 28, 0.16);
+
+  --sh-1: 0 1px 0 rgba(255, 255, 255, 0.04) inset, 0 10px 30px rgba(0, 0, 0, 0.35);
+  --sh-2: 0 18px 50px rgba(0, 0, 0, 0.45);
+  --sh-3: 0 30px 90px rgba(0, 0, 0, 0.6);
+}
+
+/* ---------- День: бетонная стена, белые стикеры ---------- */
+[data-theme='day'] {
+  color-scheme: light;
+  --wall: #e7e4dc;
+  --wall-2: #d8d4ca;
+  --wall-text: var(--ink);
+  --wall-muted: rgba(13, 14, 18, 0.66);
+
+  --paper: #efece5;
+  --surface: #ffffff;
+  --surface-2: #f4f2ed;
+  --surface-3: #e7e4dc;
+  --glass: rgba(255, 255, 255, 0.84);
+  --glass-strong: rgba(255, 255, 255, 0.95);
+  --line: rgba(13, 14, 18, 0.1);
+  --line-strong: rgba(13, 14, 18, 0.22);
+  --text: var(--ink);
+  --muted: rgba(13, 14, 18, 0.6);
+  --muted-light: rgba(13, 14, 18, 0.6);
+
+  --accent: var(--acid);
+  /* Жёлтый текст на белом не читается — акцентный текст днём кобальтовый. */
+  --accent-text: var(--cobalt);
+  --on-accent: var(--ink);
+  --accent-soft: rgba(24, 52, 214, 0.08);
+  --accent-line: rgba(24, 52, 214, 0.35);
+  --second: var(--pink-deep);
+  --second-soft: rgba(217, 44, 140, 0.1);
+  --hard-shadow: var(--ink);
+
+  --gold: var(--cobalt);
+  --gold-2: var(--cobalt);
+  --gold-3: var(--acid);
+  --gold-soft: var(--accent-soft);
+  --gold-line: var(--accent-line);
+  --bronze: var(--cobalt);
+  --danger-soft: rgba(255, 74, 61, 0.1);
+  --warn-soft: rgba(255, 159, 28, 0.14);
+
+  --sh-1: 0 1px 2px rgba(13, 14, 18, 0.06), 0 8px 24px rgba(13, 14, 18, 0.06);
+  --sh-2: 0 10px 30px rgba(13, 14, 18, 0.12);
+  --sh-3: 0 30px 80px rgba(13, 14, 18, 0.25);
+}

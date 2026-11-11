@@ -1,0 +1,81 @@
+# Имя задано явно: из кириллического названия папки Compose его вывести не может.
+name: carsharing
+
+services:
+  db:
+    image: mysql:8.4
+    environment:
+      MYSQL_DATABASE: carsharing
+      MYSQL_USER: carsharing
+      MYSQL_PASSWORD: carsharing
+      MYSQL_ROOT_PASSWORD: root
+      TZ: Europe/Minsk
+    command:
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+    ports:
+      # 3306 на компьютере часто занят локальным MySQL, поэтому наружу — 3307.
+      # Только localhost: в базе даты рождения и номера прав водителей.
+      - "127.0.0.1:3307:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./docker/mysql/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    healthcheck:
+      # Проверка по TCP: во время первичной инициализации MySQL сеть отключена,
+      # поэтому «здоров» означает «полностью готов принимать подключения».
+      test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "-uroot", "-proot"]
+      interval: 5s
+      timeout: 5s
+      retries: 40
+      start_period: 20s
+    restart: unless-stopped
+
+  backend:
+    build: ./backend
+    environment:
+      DEBUG: "False"
+      SECRET_KEY: docker-local-secret-change-me-7f3c2a9e1b
+      ALLOWED_HOSTS: localhost,127.0.0.1,backend,.trycloudflare.com
+      DATABASE_URL: mysql://carsharing:carsharing@db:3306/carsharing
+      CSRF_TRUSTED_ORIGINS: http://localhost:8088,http://127.0.0.1:8088,https://*.trycloudflare.com
+      CORS_ALLOWED_ORIGINS: http://localhost:5173,http://127.0.0.1:5173
+      PRIVATE_MEDIA_ROOT: /app/private_media
+    volumes:
+      - static_data:/app/staticfiles
+      - media_data:/app/media
+      # Сканы документов водителей — отдельный том, подключён только к бэкенду.
+      - private_data:/app/private_media
+    ports:
+      # Только localhost: в обход nginx заголовок X-Forwarded-For можно подделать.
+      - "127.0.0.1:8000:8000"
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: unless-stopped
+
+  web:
+    build: ./frontend
+    ports:
+      - "127.0.0.1:8088:80"
+    volumes:
+      - static_data:/var/www/static:ro
+      - media_data:/var/www/media:ro
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+  adminer:
+    image: adminer:4
+    environment:
+      ADMINER_DEFAULT_SERVER: db
+    ports:
+      - "127.0.0.1:8081:8080"
+    depends_on:
+      - db
+    restart: unless-stopped
+
+volumes:
+  mysql_data:
+  static_data:
+  media_data:
+  private_data:

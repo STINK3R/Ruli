@@ -1,0 +1,890 @@
+/* ---------- Логотип ---------- */
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  flex: none;
+}
+
+.logo__icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  box-shadow: 3px 3px 0 var(--ink);
+  transition: transform 0.35s var(--spring);
+}
+
+.logo:hover .logo__icon {
+  transform: rotate(-8deg) scale(1.06);
+}
+
+.logo__word {
+  font-family: var(--font-tag);
+  font-size: 30px;
+  line-height: 1;
+  text-transform: uppercase;
+  color: var(--acid);
+  text-shadow: 2px 2px 0 var(--pink);
+}
+
+[data-theme='day'] .logo__word {
+  color: var(--ink);
+  text-shadow: 2px 2px 0 var(--acid);
+}
+
+/* ---------- Верхняя панель ---------- */
+.topbar {
+  position: fixed;
+  top: calc(var(--safe-top) + 12px);
+  left: 16px;
+  right: 16px;
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  height: var(--nav-h);
+  padding: 0 12px 0 14px;
+  border: 1.5px solid var(--line);
+  border-radius: 999px;
+  background: var(--glass);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  backdrop-filter: blur(18px) saturate(140%);
+  box-shadow: var(--sh-2);
+}
+
+.topbar__nav {
+  display: flex;
+  gap: 4px;
+  margin: 0 auto;
+  padding: 4px;
+  border-radius: 999px;
+  background: var(--surface-2);
+}
+
+.topbar__link {
+  padding: 9px 16px;
+  border-radius: 999px;
+  color: var(--muted);
+  font-family: var(--font-head);
+  font-size: 12.5px;
+  font-weight: 700;
+  transition:
+    color 0.2s,
+    background 0.2s;
+}
+
+.topbar__link:hover {
+  color: var(--text);
+}
+
+.topbar__link.is-active {
+  background: var(--acid);
+  color: var(--ink);
+  box-shadow: 2px 2px 0 var(--ink);
+}
+
+.topbar__actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.topbar__user {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 4px 4px 4px 14px;
+  border: 1.5px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface-2);
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+
+.topbar__user:hover {
+  border-color: var(--accent-text);
+}
+
+.topbar__who {
+  display: grid;
+  text-align: right;
+  line-height: 1.15;
+}
+
+.topbar__who b {
+  font-size: 13.5px;
+}
+
+.topbar__who small {
+  font-family: var(--font-head);
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.avatar {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 2px solid var(--ink);
+  border-radius: 50%;
+  background: var(--surface-3);
+  color: var(--text);
+  font-family: var(--font-head);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.avatar.level-2 {
+  background: var(--acid);
+  color: var(--ink);
+}
+
+.avatar.level-3 {
+  background: var(--pink);
+  color: #fff;
+  box-shadow: 0 0 0 3px var(--acid);
+}
+
+.avatar.level-1 {
+  background: var(--cobalt);
+  color: #fff;
+}
+
+.level-text {
+  color: var(--muted);
+}
+
+.level-text.level-2 {
+  color: var(--accent-text);
+}
+
+.level-text.level-3 {
+  color: var(--second);
+}
+
+/* ---------- Нижние вкладки (телефон) ---------- */
+.tabbar {
+  position: fixed;
+  left: 10px;
+  right: 10px;
+  bottom: calc(var(--safe-bottom) + 10px);
+  z-index: 45;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  height: var(--tab-h);
+  padding: 6px;
+  border: 1.5px solid var(--line-strong);
+  border-radius: 26px;
+  background: var(--glass-strong);
+  -webkit-backdrop-filter: blur(20px) saturate(150%);
+  backdrop-filter: blur(20px) saturate(150%);
+  box-shadow: var(--sh-2);
+}
+
+.tabbar__item {
+  position: relative;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 3px;
+  padding: 0;
+  border: 0;
+  border-radius: 20px;
+  background: none;
+  color: var(--muted);
+  font-family: var(--font-head);
+  font-size: 9.5px;
+  font-weight: 700;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    color 0.2s,
+    background 0.25s var(--ease);
+}
+
+.tabbar__item svg {
+  width: 22px;
+  height: 22px;
+  transition: transform 0.35s var(--spring);
+}
+
+.tabbar__item.is-active {
+  background: var(--acid);
+  color: var(--ink);
+}
+
+.tabbar__item.is-active svg {
+  transform: rotate(-8deg) scale(1.08);
+}
+
+.tabbar__dot {
+  position: absolute;
+  top: 9px;
+  right: calc(50% - 18px);
+  width: 9px;
+  height: 9px;
+  border: 2px solid var(--surface);
+  border-radius: 50%;
+  background: var(--pink);
+  animation: pulse 2s infinite;
+}
+
+/* ---------- Меню «Ещё» ---------- */
+.sheet-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 70;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  background: rgba(6, 8, 30, 0.55);
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+  animation: fade-in 0.25s both;
+}
+
+.more {
+  position: relative;
+  width: min(420px, 100%);
+  max-height: 100dvh;
+  overflow: auto;
+  margin: 12px;
+  padding: 22px 18px 16px;
+  border: 2px solid var(--ink);
+  border-radius: var(--r-xl);
+  background: var(--surface);
+  box-shadow:
+    8px 8px 0 var(--ink),
+    var(--sh-3);
+  outline: none;
+  animation: pop-in 0.4s var(--spring) both;
+}
+
+[data-theme='night'] .more {
+  border-color: var(--line-strong);
+}
+
+.more__grabber {
+  display: none;
+}
+
+.more__close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+}
+
+.more__me {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: calc(100% - 44px);
+  padding: 4px 0 18px;
+  border: 0;
+  border-bottom: 1.5px dashed var(--line-strong);
+  background: none;
+  text-align: left;
+  cursor: pointer;
+}
+
+.more__me .avatar {
+  width: 52px;
+  height: 52px;
+  font-size: 16px;
+}
+
+.more__me span {
+  flex: 1;
+  display: grid;
+}
+
+.more__me b {
+  font-family: var(--font-head);
+  font-size: 16px;
+}
+
+.more__me small {
+  font-size: 12.5px;
+  font-weight: 700;
+}
+
+.more__guest {
+  padding: 6px 0 18px;
+}
+
+.more__guest .display {
+  margin-bottom: 24px;
+}
+
+.more__row {
+  display: flex;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.more__install,
+.more__update {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  margin-top: 16px;
+  padding: 12px 14px;
+  border: 2px solid var(--ink);
+  border-radius: var(--r-lg);
+  background: var(--acid);
+  color: var(--ink);
+  text-align: left;
+  box-shadow: 4px 4px 0 var(--pink);
+  cursor: pointer;
+  transition: transform 0.3s var(--spring);
+}
+
+.more__install:hover,
+.more__update:hover {
+  transform: rotate(-1deg) translateY(-1px);
+}
+
+.more__install img {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+}
+
+.more__install span {
+  flex: 1;
+  display: grid;
+}
+
+.more__install b {
+  font-family: var(--font-head);
+  font-size: 14px;
+}
+
+.more__install small {
+  font-size: 12px;
+  opacity: 0.75;
+}
+
+.more__update {
+  background: var(--pink);
+  color: #fff;
+  font-weight: 700;
+  box-shadow: 4px 4px 0 var(--ink);
+}
+
+.more__list {
+  margin: 14px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.more__list button,
+.more__list a {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  padding: 14px 6px;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  background: none;
+  font-size: 15px;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+}
+
+.more__list svg:first-child {
+  color: var(--accent-text);
+}
+
+.more__list svg:last-child {
+  margin-left: auto;
+  color: var(--muted);
+}
+
+.more__theme {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 18px 0 4px;
+  font-family: var(--font-head);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.more__logout {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  margin-top: 16px;
+  padding: 13px;
+  border: 1.5px solid var(--line-strong);
+  border-radius: 999px;
+  background: none;
+  color: var(--danger);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.more__foot {
+  margin: 14px 0 0;
+  color: var(--muted);
+  font-size: 11.5px;
+  text-align: center;
+}
+
+/* Переключатель-«таблетка» (тема, вкладки инструкции). */
+.segmented {
+  display: inline-flex;
+  gap: 4px;
+  padding: 4px;
+  border-radius: 999px;
+  background: var(--surface-2);
+  border: 1.5px solid var(--line);
+}
+
+.segmented button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  border: 0;
+  border-radius: 999px;
+  background: none;
+  color: var(--muted);
+  font-family: var(--font-head);
+  font-size: 11.5px;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    background 0.2s,
+    color 0.2s;
+}
+
+.segmented button.is-active {
+  background: var(--acid);
+  color: var(--ink);
+}
+
+.segmented small {
+  font-weight: 600;
+  opacity: 0.7;
+}
+
+/* ---------- Инструкция по установке ---------- */
+.guide {
+  display: grid;
+  gap: 16px;
+}
+
+.guide .segmented {
+  justify-self: start;
+}
+
+.guide__onetap p {
+  margin: 0 0 12px;
+  color: var(--muted);
+}
+
+.guide__steps {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: none;
+}
+
+.guide__steps li {
+  display: grid;
+  grid-template-columns: 28px 46px minmax(0, 1fr);
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border: 1.5px solid var(--line);
+  border-radius: var(--r-md);
+  background: var(--surface-2);
+  animation: fade-up 0.5s var(--ease) both;
+}
+
+.guide__steps b {
+  font-family: var(--font-head);
+  font-size: 13.5px;
+}
+
+.guide__steps p {
+  margin: 3px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.guide__num {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--pink);
+  color: #fff;
+  font-family: var(--font-head);
+  font-size: 12px;
+  font-weight: 800;
+  transform: rotate(-8deg);
+}
+
+.guide__icon {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border: 2px solid var(--ink);
+  border-radius: 14px;
+  background: var(--acid);
+  color: var(--ink);
+  box-shadow: 2px 2px 0 var(--ink);
+}
+
+.guide__icon svg {
+  width: 22px;
+  height: 22px;
+}
+
+.guide__chip {
+  font-family: var(--font-head);
+  font-size: 9px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+/* Макет телефона: подсвеченная кнопка «Поделиться» или меню ⋮. */
+.guide-phone {
+  justify-self: center;
+  width: 170px;
+  padding: 8px;
+  border: 3px solid var(--ink);
+  border-radius: 30px;
+  background: var(--ink);
+  box-shadow: 6px 6px 0 var(--pink);
+  transform: rotate(-3deg);
+}
+
+.guide-phone__screen {
+  position: relative;
+  height: 230px;
+  overflow: hidden;
+  border-radius: 22px;
+  background:
+    radial-gradient(circle at 30% 30%, var(--cobalt-2), var(--cobalt) 60%, var(--cobalt-deep));
+}
+
+.guide-phone__bar {
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  width: 52px;
+  height: 14px;
+  border-radius: 999px;
+  background: var(--ink);
+  transform: translateX(-50%);
+}
+
+.guide-phone__logo {
+  position: absolute;
+  top: 70px;
+  left: 0;
+  right: 0;
+  font-size: 40px;
+  text-align: center;
+  color: var(--acid) !important;
+}
+
+.guide-phone__toolbar {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  height: 44px;
+  background: rgba(255, 255, 255, 0.92);
+}
+
+.guide-phone__toolbar i {
+  width: 14px;
+  height: 14px;
+  border-radius: 4px;
+  background: #c9c9cf;
+}
+
+.guide-phone--android .guide-phone__toolbar {
+  top: 26px;
+  bottom: auto;
+  justify-content: flex-end;
+  height: 34px;
+  padding-right: 8px;
+}
+
+.guide-phone__target {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--acid);
+  color: var(--ink);
+  animation: pulse 1.6s infinite;
+}
+
+/* ---------- Знакомство (первый запуск) ---------- */
+.onboarding {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  padding: calc(var(--safe-top) + 24px) 24px calc(var(--safe-bottom) + 24px);
+  overflow: hidden;
+  background:
+    radial-gradient(60vmax 40vmax at 10% 0%, rgba(255, 79, 176, 0.35), transparent 60%),
+    radial-gradient(60vmax 50vmax at 100% 100%, rgba(255, 232, 20, 0.22), transparent 60%),
+    linear-gradient(160deg, var(--cobalt-2), var(--cobalt) 45%, var(--cobalt-deep));
+  color: #fff;
+  animation: fade-in 0.35s both;
+}
+
+.onboarding::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: var(--grain);
+  opacity: 0.12;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+}
+
+.onboarding__skip {
+  position: absolute;
+  top: calc(var(--safe-top) + 18px);
+  right: 18px;
+  z-index: 2;
+  padding: 8px 14px;
+  border: 1.5px solid rgba(255, 255, 255, 0.35);
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.15);
+  color: #fff;
+  font-family: var(--font-head);
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.onboarding__slide {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  align-content: center;
+  justify-items: start;
+  gap: 18px;
+  width: min(560px, 100%);
+  margin: 0 auto;
+  animation: fade-up 0.55s var(--ease) both;
+}
+
+.onboarding__slide .display {
+  color: var(--acid);
+  font-size: clamp(42px, 11vw, 78px);
+  text-shadow:
+    4px 4px 0 var(--pink),
+    0 0 30px rgba(255, 232, 20, 0.35);
+}
+
+.onboarding__slide .display.drip {
+  --drip: var(--acid);
+  margin-bottom: 18px;
+}
+
+.onboarding__logo {
+  font-size: clamp(90px, 28vw, 170px) !important;
+}
+
+.onboarding__slide p {
+  max-width: 460px;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.86);
+  font-size: 17px;
+  line-height: 1.55;
+}
+
+.onboarding__slide .fine-print {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.onboarding__art {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  min-height: 150px;
+}
+
+.onboarding__car {
+  width: min(420px, 90%);
+  filter: drop-shadow(10px 14px 0 rgba(13, 14, 18, 0.55));
+  transform: rotate(-4deg);
+  animation: pop-in 0.7s var(--spring) both;
+}
+
+.onboarding__icon {
+  display: grid;
+  place-items: center;
+  width: 120px;
+  height: 120px;
+  border: 3px solid var(--ink);
+  border-radius: 34px;
+  background: var(--acid);
+  color: var(--ink);
+  box-shadow: 8px 8px 0 var(--pink);
+  transform: rotate(-6deg);
+  animation: pop-in 0.6s var(--spring) both;
+}
+
+.onboarding__icon svg {
+  width: 60px;
+  height: 60px;
+  stroke-width: 1.8;
+}
+
+.onboarding__art--app img {
+  width: 140px;
+  height: 140px;
+  border-radius: 34px;
+  box-shadow: 8px 8px 0 var(--ink);
+  transform: rotate(-6deg);
+  animation: wiggle 3s ease-in-out infinite;
+}
+
+.onboarding__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.onboarding .btn--ghost {
+  border-color: rgba(255, 255, 255, 0.4);
+  color: #fff;
+}
+
+.onboarding__footer {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  width: min(560px, 100%);
+  margin: 0 auto;
+}
+
+.onboarding__dots {
+  display: flex;
+  gap: 8px;
+}
+
+.onboarding__dots button {
+  width: 10px;
+  height: 10px;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.35);
+  cursor: pointer;
+  transition:
+    width 0.35s var(--ease),
+    background 0.2s;
+}
+
+.onboarding__dots button.is-active {
+  width: 30px;
+  background: var(--acid);
+}
+
+/* ---------- Адаптив каркаса ---------- */
+@media (max-width: 1100px) {
+  .topbar__who {
+    display: none;
+  }
+
+  .topbar__user {
+    padding: 3px;
+  }
+}
+
+@media (max-width: 899px) {
+  .topbar {
+    top: calc(var(--safe-top) + 8px);
+    left: 10px;
+    right: 10px;
+    height: 58px;
+    gap: 10px;
+  }
+
+  .topbar__nav,
+  .topbar__install,
+  .topbar__signup {
+    display: none;
+  }
+
+  /* На телефоне без входа — одна кнопка «Вход», регистрация — со страницы входа. */
+  .topbar__login {
+    padding: 9px 16px;
+    border: 2px solid var(--ink);
+    background: var(--acid);
+    color: var(--ink);
+    box-shadow: 2px 2px 0 var(--ink);
+  }
+
+  .topbar__actions {
+    margin-left: auto;
+  }
+
+  .logo__word {
+    font-size: 26px;
+  }
+
+  .logo__icon {
+    width: 36px;
+    height: 36px;
+  }
+
+  .sheet-backdrop {
+    justify-content: stretch;
+  }
+
+  .more {
+    width: 100%;
+    margin: 0;
+    padding-bottom: calc(18px + var(--safe-bottom));
+    border-radius: var(--r-xl) var(--r-xl) 0 0;
+    box-shadow: var(--sh-3);
+    animation: slide-up 0.45s var(--ease) both;
+  }
+
+  .more__grabber {
+    display: block;
+    width: 44px;
+    height: 5px;
+    margin: -8px auto 14px;
+    border-radius: 999px;
+    background: var(--line-strong);
+  }
+}

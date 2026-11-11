@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Рули — экраны на телефоне (только для разработки)</title>
+    <style>
+      body { margin: 0; padding: 16px; background: #222; font: 12px system-ui; color: #ccc; }
+      .row { display: flex; gap: 16px; flex-wrap: wrap; }
+      figure { margin: 0; }
+      iframe { width: 375px; height: 760px; border: 0; border-radius: 26px; background: #000; }
+      figcaption { padding: 4px 8px; }
+    </style>
+  </head>
+  <body>
+    <!-- Dev-сервер Vite: /devices.html?p=/,/profile,/verification — несколько экранов рядом. -->
+    <div class="row" id="row"></div>
+    <script>
+      const pages = (new URLSearchParams(location.search).get('p') || '/,/profile,/verification').split(',')
+      const row = document.getElementById('row')
+      pages.forEach((path) => {
+        const figure = document.createElement('figure')
+        figure.innerHTML = `<iframe src="${path}"></iframe><figcaption>${path}</figcaption>`
+        row.appendChild(figure)
+      })
+    </script>
+  </body>
+</html>
