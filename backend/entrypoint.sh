@@ -1,6 +1,17 @@
 #!/bin/sh
 set -e
 
+if [ -z "${SECRET_KEY:-}" ]; then
+    SECRET_KEY_FILE=/run/carsharing-secrets/django-secret-key
+    mkdir -p "$(dirname "$SECRET_KEY_FILE")"
+    if [ ! -s "$SECRET_KEY_FILE" ]; then
+        echo "==> Создание постоянного ключа Django"
+        (umask 077 && python -c 'from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())' > "$SECRET_KEY_FILE")
+    fi
+    SECRET_KEY=$(cat "$SECRET_KEY_FILE")
+    export SECRET_KEY
+fi
+
 echo "==> Ожидание MySQL"
 python - <<'PY'
 import os

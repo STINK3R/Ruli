@@ -1,7 +1,8 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
-const backend = 'http://localhost:8000'
+// API dev-proxy тоже проходит через единственный опубликованный сервис nginx.
+const backend = process.env.VITE_DEV_PROXY_TARGET || 'http://localhost'
 
 export default defineConfig({
   plugins: [react()],

@@ -9,10 +9,10 @@ env = environ.Env(
     DEBUG=(bool, True),
     SECRET_KEY=(str, "django-insecure-dev-key-only-for-local-development"),
     ALLOWED_HOSTS=(list, ["localhost", "127.0.0.1"]),
-    # По умолчанию — MySQL из docker-compose, проброшенная на порт 3307.
-    DATABASE_URL=(str, "mysql://carsharing:carsharing@127.0.0.1:3307/carsharing"),
+    # При ручном запуске Django укажите доступную MySQL; Compose задаёт адрес сервиса db.
+    DATABASE_URL=(str, "mysql://carsharing:carsharing@127.0.0.1:3306/carsharing"),
     CORS_ALLOWED_ORIGINS=(list, ["http://localhost:5173", "http://127.0.0.1:5173"]),
-    CSRF_TRUSTED_ORIGINS=(list, ["http://localhost:8088", "http://127.0.0.1:8088"]),
+    CSRF_TRUSTED_ORIGINS=(list, ["http://localhost", "http://127.0.0.1"]),
     FREE_WAITING_MINUTES=(int, 10),
     OSRM_FOOT_URL=(str, "https://routing.openstreetmap.de/routed-foot"),
     OSRM_TIMEOUT_SECONDS=(float, 4.0),
